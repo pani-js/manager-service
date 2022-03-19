@@ -12,17 +12,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '16'
+
     - name: Install deps
       run: yarn install
+
     - name: Check with eslint
       run: yarn lint
+
     - name: Run tests
       if: always()
       run: yarn test
+
     - name: Run e2e tests
       if: always()
       run: yarn test:e2e
@@ -35,6 +40,7 @@ jobs:
     steps: 
     - name: Checkout repo
       uses: actions/checkout@v2
+
     - name: Login to docker
       uses: docker/login-action@v1 
       with:
