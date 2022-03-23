@@ -11,7 +11,8 @@ import { Language } from './modules/language/entity/language.entity';
 import { Workspaces } from './modules/workspaces/entity/workspaces.entity';
 import { UnionTypes } from './modules/union_types/entity/union_type.entity';
 import { Permissions } from './modules/permissions/entity/permissions.entity';
-import { Refresh_Token } from './modules/refresh_tokens/entity/refresh_token.entity';
+import { Refresh_Token } from './modules/refresh_tokens/entity/refresh_tokens.entity';
+import { WorkSpaceKeys } from './modules/workspace_keys/entity/workspace_keys.entity';
 
 
 
@@ -34,6 +35,7 @@ import { Refresh_Token } from './modules/refresh_tokens/entity/refresh_token.ent
         Workspaces,
         Language,
         Refresh_Token,
+        WorkSpaceKeys
 
 
       ],
@@ -48,6 +50,7 @@ import { Refresh_Token } from './modules/refresh_tokens/entity/refresh_token.ent
       envFilePath: ['.env.development.local', '.env.development'],
       isGlobal: true
     }),
+
 
 
   ],
