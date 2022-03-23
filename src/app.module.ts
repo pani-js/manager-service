@@ -11,6 +11,7 @@ import { Language } from './modules/language/entity/language.entity';
 import { Workspaces } from './modules/workspaces/entity/workspaces.entity';
 import { UnionTypes } from './modules/union_types/entity/union_type.entity';
 import { Permissions } from './modules/permissions/entity/permissions.entity';
+import { Refresh_Token } from './modules/refresh_tokens/entity/refresh_token.entity';
 
 
 
@@ -31,7 +32,9 @@ import { Permissions } from './modules/permissions/entity/permissions.entity';
         UnionTypes,
         Unions,
         Workspaces,
-        Language
+        Language,
+        Refresh_Token,
+
 
       ],
       synchronize: true,
@@ -45,6 +48,7 @@ import { Permissions } from './modules/permissions/entity/permissions.entity';
       envFilePath: ['.env.development.local', '.env.development'],
       isGlobal: true
     }),
+
 
   ],
 
