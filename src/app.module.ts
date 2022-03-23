@@ -8,7 +8,8 @@ import { UnionsModule } from './modules/unions/unions.module';
 import { User } from './modules/user/entity/user.enity';
 import { Unions } from './modules/unions/entity/unions.entity';
 import { Language } from './modules/language/entity/language.entity';
-import { Workspaces } from './workspaces/entity/workspaces.entity';
+import { Workspaces } from './modules/workspaces/entity/workspaces.entity';
+import { UnionTypesModule } from './union_types/union_types.module';
 
 
 
@@ -43,6 +44,8 @@ import { Workspaces } from './workspaces/entity/workspaces.entity';
       envFilePath:  ['.env.development.local', '.env.development'],
       isGlobal: true
     }),
+
+    UnionTypesModule,
 
 
   ],
