@@ -7,6 +7,11 @@ import { UsersModule } from './modules/user/user.module';
 import { UnionsModule } from './modules/unions/unions.module';
 import { User } from './modules/user/entity/user.enity';
 import { Unions } from './modules/unions/entity/unions.entity';
+import { Language } from './modules/language/entity/language.entity';
+import { Workspaces } from './workspaces/entity/workspaces.entity';
+
+
+
 
 @Module({
 
@@ -22,7 +27,9 @@ import { Unions } from './modules/unions/entity/unions.entity';
 
         User,
 
-        Unions
+        Unions,
+        Workspaces,
+        Language
 
       ],
       synchronize: true,
@@ -35,7 +42,8 @@ import { Unions } from './modules/unions/entity/unions.entity';
     ConfigModule.forRoot({
       envFilePath:  ['.env.development.local', '.env.development'],
       isGlobal: true
-    })
+    }),
+
 
   ],
 
