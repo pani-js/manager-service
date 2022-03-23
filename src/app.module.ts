@@ -10,6 +10,7 @@ import { Unions } from './modules/unions/entity/unions.entity';
 import { Language } from './modules/language/entity/language.entity';
 import { Workspaces } from './modules/workspaces/entity/workspaces.entity';
 import { UnionTypes } from './modules/union_types/entity/union_type.entity';
+import { Permissions } from './modules/permissions/entity/permissions.entity';
 
 
 
@@ -25,7 +26,7 @@ import { UnionTypes } from './modules/union_types/entity/union_type.entity';
       password: "root",
       database: "pani",
       entities: [
-
+        Permissions,
         User,
         UnionTypes,
         Unions,
@@ -44,8 +45,6 @@ import { UnionTypes } from './modules/union_types/entity/union_type.entity';
       envFilePath: ['.env.development.local', '.env.development'],
       isGlobal: true
     }),
-
-
 
   ],
 
