@@ -9,7 +9,7 @@ import { User } from './modules/user/entity/user.enity';
 import { Unions } from './modules/unions/entity/unions.entity';
 import { Language } from './modules/language/entity/language.entity';
 import { Workspaces } from './modules/workspaces/entity/workspaces.entity';
-import { UnionTypesModule } from './union_types/union_types.module';
+import { UnionTypes } from './modules/union_types/entity/union_type.entity';
 
 
 
@@ -27,25 +27,24 @@ import { UnionTypesModule } from './union_types/union_types.module';
       entities: [
 
         User,
-
+        UnionTypes,
         Unions,
         Workspaces,
         Language
 
       ],
       synchronize: true,
-    }), 
+    }),
 
     UsersModule,
 
     UnionsModule,
 
     ConfigModule.forRoot({
-      envFilePath:  ['.env.development.local', '.env.development'],
+      envFilePath: ['.env.development.local', '.env.development'],
       isGlobal: true
     }),
 
-    UnionTypesModule,
 
 
   ],

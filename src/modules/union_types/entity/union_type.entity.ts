@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Language {
+export class UnionTypes {
     @PrimaryGeneratedColumn()
     id: number;
 
