@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Union_Data } from 'src/modules/unions_data/entity/unions_data.entity';
+import { Union_Data } from 'src/models/unions_data/entity/unions_data.entity';
 @Entity()
 export class Language {
   @PrimaryGeneratedColumn()

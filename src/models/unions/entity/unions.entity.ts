@@ -7,10 +7,10 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { UnionTypes } from 'src/modules/union_types/entity/union_type.entity';
-import { Union_Data } from 'src/modules/unions_data/entity/unions_data.entity';
-import { Workspaces } from 'src/modules/workspaces/entity/workspaces.entity';
-import { User } from 'src/modules/user/entity/user.entity';
+import { UnionTypes } from 'src/models/union_types/entity/union_type.entity';
+import { Union_Data } from 'src/models/unions_data/entity/unions_data.entity';
+import { Workspaces } from 'src/models/workspaces/entity/workspaces.entity';
+import { User } from 'src/models/user/entity/user.entity';
 @Entity()
 export class Unions {
   @PrimaryGeneratedColumn()

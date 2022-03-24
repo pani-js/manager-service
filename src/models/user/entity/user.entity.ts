@@ -6,8 +6,8 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { Refresh_Token } from 'src/modules/refresh_tokens/entity/refresh_tokens.entity';
-import { Scripts } from 'src/modules/scripts/entity/scripts.entity';
+import { Refresh_Token } from 'src/models/refresh_tokens/entity/refresh_tokens.entity';
+import { Scripts } from 'src/models/scripts/entity/scripts.entity';
 @Entity({
   name: 'users',
 })

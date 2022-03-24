@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Language } from 'src/modules/language/entity/language.entity';
-import { Unions } from 'src/modules/unions/entity/unions.entity';
+import { Language } from 'src/models/language/entity/language.entity';
+import { Unions } from 'src/models/unions/entity/unions.entity';
 @Entity()
 export class Union_Data {
   @PrimaryGeneratedColumn()

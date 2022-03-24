@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Workspaces } from 'src/modules/workspaces/entity/workspaces.entity';
+import { Workspaces } from 'src/models/workspaces/entity/workspaces.entity';
 @Entity()
 export class WorkSpaceKeys {
   @PrimaryGeneratedColumn()

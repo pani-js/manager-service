@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { User } from 'src/modules/user/entity/user.entity';
-import { Workspaces } from 'src/modules/workspaces/entity/workspaces.entity';
+import { User } from 'src/models/user/entity/user.entity';
+import { Workspaces } from 'src/models/workspaces/entity/workspaces.entity';
 
 @Entity()
 export class Scripts {

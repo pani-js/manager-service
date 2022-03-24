@@ -5,9 +5,9 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { WorkSpaceKeys } from 'src/modules/workspace_keys/entity/workspace_keys.entity';
-import { Scripts } from 'src/modules/scripts/entity/scripts.entity';
-import { Unions } from 'src/modules/unions/entity/unions.entity';
+import { WorkSpaceKeys } from 'src/models/workspace_keys/entity/workspace_keys.entity';
+import { Scripts } from 'src/models/scripts/entity/scripts.entity';
+import { Unions } from 'src/models/unions/entity/unions.entity';
 @Entity()
 export class Workspaces {
   @PrimaryGeneratedColumn()
