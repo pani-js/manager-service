@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './modules/user/user.module';
 import { UnionsModule } from './modules/unions/unions.module';
-import { User } from './modules/user/entity/user.enity';
+import { User } from './modules/user/entity/user.entity';
 import { Unions } from './modules/unions/entity/unions.entity';
 import { Language } from './modules/language/entity/language.entity';
 import { Workspaces } from './modules/workspaces/entity/workspaces.entity';
@@ -23,11 +23,11 @@ import { WorkSpaceKeys } from './modules/workspace_keys/entity/workspace_keys.en
 
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'root',
-      database: 'pani',
+      host: process.env.POSTGRES_HOST,
+      port: +process.env.POSTGRES_PORT,
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       entities: [
         Permissions,
         User,
