@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Unions } from 'src/modules/unions/entity/unions.entity';
 @Entity()
 export class UnionTypes {
   @PrimaryGeneratedColumn()
@@ -10,4 +10,6 @@ export class UnionTypes {
 
   @Column()
   name: string;
+  @OneToMany(() => Unions, (unions) => unions.id)
+  unions: Unions[];
 }

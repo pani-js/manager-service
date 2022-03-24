@@ -13,7 +13,13 @@ import { UnionTypes } from './modules/union_types/entity/union_type.entity';
 import { Permissions } from './modules/permissions/entity/permissions.entity';
 import { Refresh_Token } from './modules/refresh_tokens/entity/refresh_tokens.entity';
 import { WorkSpaceKeys } from './modules/workspace_keys/entity/workspace_keys.entity';
-
+import { UnionsDataService } from './modules/unions_data/unions_data.service';
+import { UnionsDataModule } from './modules/unions_data/unions_data.module';
+import { Union_Data } from './modules/unions_data/entity/unions_data.entity';
+import { ScriptsController } from './modules/scripts/scripts.controller';
+import { ScriptsService } from './modules/scripts/scripts.service';
+import { ScriptsModule } from './modules/scripts/scripts.module';
+import { Scripts } from './modules/scripts/entity/scripts.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -37,16 +43,20 @@ import { WorkSpaceKeys } from './modules/workspace_keys/entity/workspace_keys.en
         Language,
         Refresh_Token,
         WorkSpaceKeys,
+        Union_Data,
+        Scripts,
       ],
       synchronize: true,
     }),
 
     UsersModule,
     UnionsModule,
+    UnionsDataModule,
+    ScriptsModule,
   ],
 
-  controllers: [AppController],
+  controllers: [AppController, ScriptsController],
 
-  providers: [AppService],
+  providers: [AppService, UnionsDataService, ScriptsService],
 })
 export class AppModule {}

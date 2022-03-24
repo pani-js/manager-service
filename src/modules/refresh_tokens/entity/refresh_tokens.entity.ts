@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from 'src/modules/user/entity/user.entity';
 @Entity()
 export class Refresh_Token {
   @PrimaryGeneratedColumn()
@@ -10,4 +10,7 @@ export class Refresh_Token {
 
   @Column()
   name: string;
+
+  @ManyToOne(() => User, (user) => user.id)
+  user: User;
 }

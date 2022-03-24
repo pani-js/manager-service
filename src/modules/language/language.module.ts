@@ -3,12 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LanguageController } from './language.controller';
 import { LanguageService } from './language.service';
 
-
-
 @Module({
-    imports: [TypeOrmModule.forFeature()],
-    providers: [LanguageService],
-    controllers: [LanguageController],
-
+  imports: [TypeOrmModule.forFeature()],
+  providers: [LanguageService],
+  controllers: [LanguageController],
 })
-export class LanguageModule { }
+export class LanguageModule {}
