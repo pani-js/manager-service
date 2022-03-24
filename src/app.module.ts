@@ -14,19 +14,20 @@ import { Permissions } from './modules/permissions/entity/permissions.entity';
 import { Refresh_Token } from './modules/refresh_tokens/entity/refresh_tokens.entity';
 import { WorkSpaceKeys } from './modules/workspace_keys/entity/workspace_keys.entity';
 
-
-
-
 @Module({
-
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: ['.env.development.local', '.env.development'],
+      isGlobal: true,
+    }),
+
     TypeOrmModule.forRoot({
-      type: "postgres",
-      host: "localhost",
+      type: 'postgres',
+      host: 'localhost',
       port: 5432,
-      username: "postgres",
-      password: "root",
-      database: "pani",
+      username: 'postgres',
+      password: 'root',
+      database: 'pani',
       entities: [
         Permissions,
         User,
@@ -35,30 +36,17 @@ import { WorkSpaceKeys } from './modules/workspace_keys/entity/workspace_keys.en
         Workspaces,
         Language,
         Refresh_Token,
-        WorkSpaceKeys
-
-
+        WorkSpaceKeys,
       ],
       synchronize: true,
     }),
 
     UsersModule,
-
     UnionsModule,
-
-    ConfigModule.forRoot({
-      envFilePath: ['.env.development.local', '.env.development'],
-      isGlobal: true
-    }),
-
-
-
   ],
 
   controllers: [AppController],
 
   providers: [AppService],
-
 })
-
-export class AppModule { }
+export class AppModule {}

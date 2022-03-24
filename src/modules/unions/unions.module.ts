@@ -5,8 +5,8 @@ import { UnionsController } from './unions.controller';
 import { Unions } from './entity/unions.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Unions])],
-    providers: [UnionsService],
-    controllers: [UnionsController],
+  imports: [TypeOrmModule.forFeature([Unions])],
+  providers: [UnionsService],
+  controllers: [UnionsController],
 })
-export class UnionsModule { }
+export class UnionsModule {}
