@@ -3,23 +3,24 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './models/user/user.module';
+import { UsersModule } from './models/users/users.module';
 import { UnionsModule } from './models/unions/unions.module';
-import { User } from './models/user/entity/user.entity';
-import { Unions } from './models/unions/entity/unions.entity';
-import { Language } from './models/language/entity/language.entity';
-import { Workspaces } from './models/workspaces/entity/workspaces.entity';
-import { UnionTypes } from './models/union_types/entity/union_type.entity';
-import { Permissions } from './models/permissions/entity/permissions.entity';
-import { Refresh_Token } from './models/refresh_tokens/entity/refresh_tokens.entity';
-import { WorkSpaceKeys } from './models/workspace_keys/entity/workspace_keys.entity';
-import { UnionsDataService } from './models/unions_data/unions_data.service';
-import { UnionsDataModule } from './models/unions_data/unions_data.module';
-import { Union_Data } from './models/unions_data/entity/unions_data.entity';
+import { User } from './models/users/user.entity';
+import { Union } from './models/unions/union.entity';
+import { Language } from './models/languages/language.entity';
+import { Workspace } from './models/workspaces/workspace.entity';
+import { UnionType } from './models/union-types/union-type.entity';
+import { Permission } from './models/permissions/permission.entity';
+import { RefreshToken } from './models/refresh-tokens/refresh-token.entity';
+import { WorkSpaceKey } from './models/workspace-keys/workspace-key.entity';
+import { UnionsDataService } from './models/unions-data/unions-data.service';
+import { UnionsDataModule } from './models/unions-data/unions-data.module';
+import { UnionData } from './models/unions-data/union-data.entity';
 import { ScriptsController } from './models/scripts/scripts.controller';
 import { ScriptsService } from './models/scripts/scripts.service';
 import { ScriptsModule } from './models/scripts/scripts.module';
-import { Scripts } from './models/scripts/entity/scripts.entity';
+import { Script } from './models/scripts/script.entity';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -35,16 +36,16 @@ import { Scripts } from './models/scripts/entity/scripts.entity';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       entities: [
-        Permissions,
+        Permission,
         User,
-        UnionTypes,
-        Unions,
-        Workspaces,
+        UnionType,
+        Union,
+        Workspace,
         Language,
-        Refresh_Token,
-        WorkSpaceKeys,
-        Union_Data,
-        Scripts,
+        RefreshToken,
+        WorkSpaceKey,
+        UnionData,
+        Script,
       ],
       synchronize: true,
     }),

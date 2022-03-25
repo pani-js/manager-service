@@ -1,6 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Union_Data } from 'src/models/unions_data/entity/unions_data.entity';
-@Entity()
+import { UnionData } from '../unions-data/union-data.entity';
+
+@Entity({
+  name: 'languages',
+})
 export class Language {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,6 +14,6 @@ export class Language {
   @Column()
   name: string;
 
-  @OneToMany(() => Union_Data, (union_data) => union_data.language)
-  public union_data!: Union_Data[];
+  @OneToMany(() => UnionData, (unionData) => unionData.language)
+  unionData: UnionData[];
 }
