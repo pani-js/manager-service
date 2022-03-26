@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Checks
 
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.TEST_POSTGRES_PASSWORD }}
+        ports:
+          - 5432:5432
+
     steps:
     - uses: actions/checkout@v2
     
@@ -29,8 +37,15 @@ jobs:
       run: yarn test
 
     - name: Run e2e tests
+      env:
+        POSTGRES_DB: postgres
+        POSTGRES_USERNAME: postgres
+        POSTGRES_PASSWORD: ${{ secrets.TEST_POSTGRES_PASSWORD }}
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
       if: always()
       run: yarn test:e2e
+
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
