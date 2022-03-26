@@ -25,6 +25,8 @@ const entities = [
   Script,
 ];
 
+console.log(process.env);
+
 @Module({
   imports: [
     process.env.TEST_ENV === 'ci'
