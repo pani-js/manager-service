@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LanguageController } from './language.controller';
-import { LanguageService } from './language.service';
+import { LanguageController } from './languages.controller';
+import { LanguageService } from './languages.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature()],

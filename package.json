@@ -73,6 +73,11 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/../src/$1",
+      "^@helpers/(.*)$": "<rootDir>/../src/common/helpers/$1",
+      "^@models/(.*)$": "<rootDir>/../src/models/$1"
+    }
   }
 }
