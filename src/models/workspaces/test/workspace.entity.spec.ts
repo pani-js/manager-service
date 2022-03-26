@@ -5,7 +5,7 @@ import { Workspace } from '../workspace.entity';
 import { EntityFields } from '@our-types/tests';
 import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
-describe('UserEntity', () => {
+describe('WorkspaceEntity', () => {
   describe('Fields', () => {
     let userRepoToken = getRepositoryToken(Workspace);
     let fields: EntityFields<Workspace>;

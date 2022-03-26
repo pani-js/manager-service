@@ -5,7 +5,7 @@ import { Language } from '../language.entity';
 import { EntityFields } from '@our-types/tests';
 import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
-describe('UserEntity', () => {
+describe('LanguageEntity', () => {
   describe('Fields', () => {
     let userRepoToken = getRepositoryToken(Language);
     let fields: EntityFields<Language>;

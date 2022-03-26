@@ -5,7 +5,7 @@ import { Union } from '../union.entity';
 import { EntityFields } from '@our-types/tests';
 import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
-describe('UserEntity', () => {
+describe('UnionEntity', () => {
   describe('Fields', () => {
     let userRepoToken = getRepositoryToken(Union);
     let fields: EntityFields<Union>;

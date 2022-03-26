@@ -5,7 +5,7 @@ import { Permission } from '../permission.entity';
 import { EntityFields } from '@our-types/tests';
 import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
-describe('UserEntity', () => {
+describe('PermissionEntity', () => {
   describe('Fields', () => {
     let userRepoToken = getRepositoryToken(Permission);
     let fields: EntityFields<Permission>;
