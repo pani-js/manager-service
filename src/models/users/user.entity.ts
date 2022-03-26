@@ -16,7 +16,7 @@ export class User {
   firstName: string;
 
   @Column({ length: 100 })
-  last_name: string;
+  lastName: string;
 
   @Column()
   position: string;

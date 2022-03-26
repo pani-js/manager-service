@@ -1,30 +1,40 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { EntityTestModule } from '@helpers/test-utils/entity-test.module';
 import { User } from '../user.entity';
+import { EntityFields } from '@our-types/tests';
+import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('UserEntity', () => {
   describe('Fields', () => {
-    const userRepoToken = getRepositoryToken(User);
-    let userRepo: Repository<User>;
-    let user: User;
+    let userRepoToken = getRepositoryToken(User);
+    let fields: EntityFields<User>;
+    let module: TestingModule;
 
     beforeAll(async () => {
-      const module: TestingModule = await Test.createTestingModule({
+      module = await Test.createTestingModule({
         imports: [EntityTestModule],
       }).compile();
 
-      userRepo = module.get(userRepoToken);
-      await userRepo.save(userRepo.create());
+      fields = getEntityFields({ in: module, for: userRepoToken as string });
     });
 
     afterAll(() => {
-      // userRepo.clear();
+      module = null;
+      fields = null;
+      userRepoToken = null;
     });
 
     it('should have id', async () => {
-      console.log(await userRepo.findAndCount());
+      expect(fields.id).toBe(Number);
+    });
+
+    it('should have username', async () => {
+      expect(fields.username).toBe(String);
+    });
+
+    it('should have avatar', async () => {
+      expect(fields.avatar).toBe(String);
     });
   });
 });

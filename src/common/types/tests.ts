@@ -1,3 +1,1 @@
-export type EntityFields = {
-  [key: string]: string | number | Date;
-};
+export type EntityFields<T> = Record<keyof T, string | number | Date | boolean>;
