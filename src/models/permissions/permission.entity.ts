@@ -1,5 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
+import { UserUnionPermission } from '../user_union_permissions/user_union_permissions.entity';
 @Entity({
   name: 'permissions',
 })
@@ -12,4 +18,8 @@ export class Permission {
 
   @Column()
   name: string;
+
+  @ManyToMany(() => UserUnionPermission)
+  @JoinTable()
+  userUnionPermission: UserUnionPermission[];
 }

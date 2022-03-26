@@ -38,7 +38,7 @@ export class User {
 
   @OneToMany(
     () => UserUnionPermission,
-    (userUnionPermissions) => userUnionPermissions.user,
+    (userUnionPermission) => userUnionPermission.user,
   )
   userUnionPermissions: UserUnionPermission[];
 }

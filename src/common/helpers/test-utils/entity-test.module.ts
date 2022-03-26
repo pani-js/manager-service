@@ -11,6 +11,7 @@ import { Union } from '@models/unions/union.entity';
 import { User } from '@models/users/user.entity';
 import { WorkSpaceKey } from '@models/workspace-keys/workspace-key.entity';
 import { Workspace } from '@models/workspaces/workspace.entity';
+import { UserUnionPermission } from '@/models/user_union_permissions/user_union_permissions.entity';
 
 const entities = [
   Permission,
@@ -23,6 +24,7 @@ const entities = [
   WorkSpaceKey,
   UnionData,
   Script,
+  UserUnionPermission,
 ];
 
 @Module({
