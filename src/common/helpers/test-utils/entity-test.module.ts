@@ -25,16 +25,13 @@ const entities = [
   Script,
 ];
 
-console.log(process.env);
-
 @Module({
   imports: [
-    process.env.CI
-      ? null
-      : ConfigModule.forRoot({
-          envFilePath: ['.env.test'],
-          isGlobal: true,
-        }),
+    ConfigModule.forRoot({
+      envFilePath: ['.env.test'],
+      isGlobal: true,
+    }),
+
     TypeOrmModule.forFeature(entities),
 
     TypeOrmModule.forRoot({
