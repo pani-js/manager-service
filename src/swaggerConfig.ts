@@ -1,18 +1,15 @@
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
-let SwaggerConfig = function (app) {
+function addSwaggerConfig(args) {
+  const config = new DocumentBuilder()
+    .setTitle('Pani example')
+    .setDescription('The Pain API description')
+    .setVersion('0.0.1')
+    .build();
 
-    const config = new DocumentBuilder()
-        .setTitle('Paim example')
-        .setDescription('The Pain API description')
-        .setVersion('1.0')
-        .addTag('Pain')
-        .build();
+  const document = SwaggerModule.createDocument(args, config);
 
-    const document = SwaggerModule.createDocument(app, config);
-
-    SwaggerModule.setup('swagger', app, document);
-
+  SwaggerModule.setup('swagger', args, document);
 }
 
-export { SwaggerConfig };
+export { addSwaggerConfig };
