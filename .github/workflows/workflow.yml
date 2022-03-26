@@ -1,0 +1,70 @@
+name: Check and deploy project 
+
+on: 
+  push:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Checks
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.TEST_POSTGRES_PASSWORD }}
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16'
+
+    - name: Install deps
+      run: yarn install
+
+    - name: Check with eslint
+      run: yarn lint
+
+    - name: Run tests
+      if: always()
+      run: yarn test
+
+    - name: Run e2e tests
+      env:
+        POSTGRES_DB: postgres
+        POSTGRES_USERNAME: postgres
+        POSTGRES_PASSWORD: ${{ secrets.TEST_POSTGRES_PASSWORD }}
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
+      if: always()
+      run: yarn test:e2e
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    
+    needs: [test]
+    
+    steps: 
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Login to docker
+      uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and Push
+      if: github.ref == 'refs/heads/main'
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: ${{secrets.DOCKERHUB_USERNAME}}/pani-back
