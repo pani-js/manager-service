@@ -27,11 +27,12 @@ const entities = [
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: ['.env.test'],
-      isGlobal: true,
-    }),
-
+    process.env.TEST_ENV === 'ci'
+      ? undefined
+      : ConfigModule.forRoot({
+          envFilePath: ['.env.test'],
+          isGlobal: true,
+        }),
     TypeOrmModule.forFeature(entities),
 
     TypeOrmModule.forRoot({

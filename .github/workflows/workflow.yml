@@ -38,6 +38,7 @@ jobs:
 
     - name: Run e2e tests
       env:
+        TEST_ENV: ci
         POSTGRES_DB: postgres
         POSTGRES_USERNAME: postgres
         POSTGRES_PASSWORD: postgres
