@@ -10,7 +10,7 @@ export class UnionData {
   id: number;
 
   @Column()
-  name: number;
+  name: string;
 
   @Column()
   description: string;
