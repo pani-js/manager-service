@@ -33,6 +33,13 @@ jobs:
       run: yarn lint
 
     - name: Run tests
+      env:
+        TEST_ENV: ci
+        POSTGRES_DB: postgres
+        POSTGRES_USERNAME: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
       if: always()
       run: yarn test
 

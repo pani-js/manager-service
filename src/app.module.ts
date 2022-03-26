@@ -23,10 +23,12 @@ import { Script } from '@models/scripts/script.entity';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: ['.env.development'],
-      isGlobal: true,
-    }),
+    process.env.TEST_ENV === 'ci'
+      ? undefined
+      : ConfigModule.forRoot({
+          envFilePath: ['.env.development'],
+          isGlobal: true,
+        }),
 
     TypeOrmModule.forRoot({
       type: 'postgres',
