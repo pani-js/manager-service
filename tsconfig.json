@@ -20,7 +20,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@helpers/*": ["src/common/helpers/*"],
-      "@models/*": ["src/models/*"]
+      "@models/*": ["src/models/*"],
+      "@our-types/*": ["src/common/types/*"]
     }
   }
 }

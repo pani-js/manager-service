@@ -1,4 +1,3 @@
-export type Field = {
-  name: string;
-  type: string | number | Date;
+export type EntityFields = {
+  [key: string]: string | number | Date;
 };
