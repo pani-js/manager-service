@@ -29,8 +29,8 @@ console.log(process.env);
 
 @Module({
   imports: [
-    process.env.TEST_ENV === 'ci'
-      ? undefined
+    process.env.CI
+      ? null
       : ConfigModule.forRoot({
           envFilePath: ['.env.test'],
           isGlobal: true,
