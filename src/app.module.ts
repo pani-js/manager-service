@@ -20,6 +20,7 @@ import { ScriptsController } from '@models/scripts/scripts.controller';
 import { ScriptsService } from '@models/scripts/scripts.service';
 import { ScriptsModule } from '@models/scripts/scripts.module';
 import { Script } from '@models/scripts/script.entity';
+import { UserUnionPermission } from '@models/user_union_permissions/user_union_permissions.entity';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { Script } from '@models/scripts/script.entity';
         WorkSpaceKey,
         UnionData,
         Script,
+        UserUnionPermission,
       ],
       synchronize: true,
     }),

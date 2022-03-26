@@ -11,7 +11,7 @@ import { UnionType } from '../union-types/union-type.entity';
 import { UnionData } from '../unions-data/union-data.entity';
 import { Workspace } from '../workspaces/workspace.entity';
 import { User } from '../users/user.entity';
-
+import { UserUnionPermission } from '../user_union_permissions/user_union_permissions.entity';
 @Entity({
   name: 'unions',
 })
@@ -33,6 +33,12 @@ export class Union {
 
   @OneToMany(() => Workspace, (workspace) => workspace.union)
   workspaces: Workspace[];
+
+  @OneToMany(
+    () => UserUnionPermission,
+    (userUnionPermissions) => userUnionPermissions.union,
+  )
+  userUnionPermissions: UserUnionPermission[];
 
   @ManyToMany(() => User)
   @JoinTable()
