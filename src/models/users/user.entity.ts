@@ -13,7 +13,7 @@ export class User {
   username: string;
 
   @Column({ length: 100 })
-  first_name: string;
+  firstName: string;
 
   @Column({ length: 100 })
   last_name: string;
