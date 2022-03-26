@@ -7,7 +7,7 @@ export function getEntityFields<T>(args: {
 }): EntityFields<T> {
   const { metadata } = args.in.get(args.for);
   return metadata.ownColumns.reduce(
-    (prev, { propertyName, type }): { [key: string]: any } => ({
+    (prev, { propertyName, type }): EntityFields<T> => ({
       ...prev,
       [propertyName]: type,
     }),
