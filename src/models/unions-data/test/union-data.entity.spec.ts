@@ -3,7 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { EntityTestModule } from '@helpers/test-utils/entity-test.module';
 import { UnionData } from '../union-data.entity';
 import { EntityFields } from '@our-types/tests';
-import { getEntityFields } from '@helpers//test-utils/entity-fields';
+import { getEntityFields } from '@helpers/test-utils/entity-fields';
 
 describe('UnionDataEntity', () => {
   describe('Fields', () => {
