@@ -7,7 +7,7 @@ import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('ScriptEntity', () => {
   describe('Fields', () => {
-    let userRepoToken = getRepositoryToken(Script);
+    let scriptRepoToken = getRepositoryToken(Script);
     let fields: EntityFields<Script>;
     let module: TestingModule;
 
@@ -16,13 +16,13 @@ describe('ScriptEntity', () => {
         imports: [EntityTestModule],
       }).compile();
 
-      fields = getEntityFields({ in: module, for: userRepoToken as string });
+      fields = getEntityFields({ in: module, for: scriptRepoToken as string });
     });
 
     afterAll(() => {
       module = null;
       fields = null;
-      userRepoToken = null;
+      scriptRepoToken = null;
     });
 
     it('should have id', async () => {

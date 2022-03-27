@@ -7,7 +7,7 @@ import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('WorkspaceEntity', () => {
   describe('Fields', () => {
-    let userRepoToken = getRepositoryToken(Workspace);
+    let workspaceRepoToken = getRepositoryToken(Workspace);
     let fields: EntityFields<Workspace>;
     let module: TestingModule;
 
@@ -16,13 +16,16 @@ describe('WorkspaceEntity', () => {
         imports: [EntityTestModule],
       }).compile();
 
-      fields = getEntityFields({ in: module, for: userRepoToken as string });
+      fields = getEntityFields({
+        in: module,
+        for: workspaceRepoToken as string,
+      });
     });
 
     afterAll(() => {
       module = null;
       fields = null;
-      userRepoToken = null;
+      workspaceRepoToken = null;
     });
 
     it('should have id', async () => {

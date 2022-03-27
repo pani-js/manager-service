@@ -7,7 +7,7 @@ import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('UnionEntity', () => {
   describe('Fields', () => {
-    let userRepoToken = getRepositoryToken(Union);
+    let unionRepoToken = getRepositoryToken(Union);
     let fields: EntityFields<Union>;
     let module: TestingModule;
 
@@ -16,13 +16,13 @@ describe('UnionEntity', () => {
         imports: [EntityTestModule],
       }).compile();
 
-      fields = getEntityFields({ in: module, for: userRepoToken as string });
+      fields = getEntityFields({ in: module, for: unionRepoToken as string });
     });
 
     afterAll(() => {
       module = null;
       fields = null;
-      userRepoToken = null;
+      unionRepoToken = null;
     });
 
     it('should have id', async () => {

@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { RefreshToken } from '../refresh-tokens/refresh-token.entity';
 import { Script } from '../scripts/script.entity';
 import { UserUnionPermission } from '../user_union_permissions/user_union_permissions.entity';
+
 @Entity({
   name: 'users',
 })

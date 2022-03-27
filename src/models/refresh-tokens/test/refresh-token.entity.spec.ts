@@ -7,7 +7,7 @@ import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('RefreshTokenEntity', () => {
   describe('Fields', () => {
-    let userRepoToken = getRepositoryToken(RefreshToken);
+    let refreshTokenRepoToken = getRepositoryToken(RefreshToken);
     let fields: EntityFields<RefreshToken>;
     let module: TestingModule;
 
@@ -16,13 +16,16 @@ describe('RefreshTokenEntity', () => {
         imports: [EntityTestModule],
       }).compile();
 
-      fields = getEntityFields({ in: module, for: userRepoToken as string });
+      fields = getEntityFields({
+        in: module,
+        for: refreshTokenRepoToken as string,
+      });
     });
 
     afterAll(() => {
       module = null;
       fields = null;
-      userRepoToken = null;
+      refreshTokenRepoToken = null;
     });
 
     it('should have id', async () => {

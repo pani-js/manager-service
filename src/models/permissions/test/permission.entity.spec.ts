@@ -7,7 +7,7 @@ import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('PermissionEntity', () => {
   describe('Fields', () => {
-    let userRepoToken = getRepositoryToken(Permission);
+    let permissionRepoToken = getRepositoryToken(Permission);
     let fields: EntityFields<Permission>;
     let module: TestingModule;
 
@@ -16,13 +16,16 @@ describe('PermissionEntity', () => {
         imports: [EntityTestModule],
       }).compile();
 
-      fields = getEntityFields({ in: module, for: userRepoToken as string });
+      fields = getEntityFields({
+        in: module,
+        for: permissionRepoToken as string,
+      });
     });
 
     afterAll(() => {
       module = null;
       fields = null;
-      userRepoToken = null;
+      permissionRepoToken = null;
     });
 
     it('should have id', async () => {

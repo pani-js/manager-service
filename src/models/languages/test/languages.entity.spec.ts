@@ -7,7 +7,7 @@ import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('LanguageEntity', () => {
   describe('Fields', () => {
-    let userRepoToken = getRepositoryToken(Language);
+    let languageRepoToken = getRepositoryToken(Language);
     let fields: EntityFields<Language>;
     let module: TestingModule;
 
@@ -16,13 +16,16 @@ describe('LanguageEntity', () => {
         imports: [EntityTestModule],
       }).compile();
 
-      fields = getEntityFields({ in: module, for: userRepoToken as string });
+      fields = getEntityFields({
+        in: module,
+        for: languageRepoToken as string,
+      });
     });
 
     afterAll(() => {
       module = null;
       fields = null;
-      userRepoToken = null;
+      languageRepoToken = null;
     });
 
     it('should have id', async () => {

@@ -9,7 +9,9 @@ import { WorkSpaceKey } from '../workspace-keys/workspace-key.entity';
 import { Script } from '../scripts/script.entity';
 import { Union } from '../unions/union.entity';
 
-@Entity()
+@Entity({
+  name: 'workspace',
+})
 export class Workspace {
   @PrimaryGeneratedColumn()
   id: number;

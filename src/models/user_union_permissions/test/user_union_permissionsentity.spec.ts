@@ -7,7 +7,7 @@ import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
 
 describe('UserUnionPermissionEntity', () => {
   describe('Fields', () => {
-    let userRepoToken = getRepositoryToken(UserUnionPermission);
+    let userUnionPermissionRepoToken = getRepositoryToken(UserUnionPermission);
     let fields: EntityFields<UserUnionPermission>;
     let module: TestingModule;
 
@@ -16,13 +16,16 @@ describe('UserUnionPermissionEntity', () => {
         imports: [EntityTestModule],
       }).compile();
 
-      fields = getEntityFields({ in: module, for: userRepoToken as string });
+      fields = getEntityFields({
+        in: module,
+        for: userUnionPermissionRepoToken as string,
+      });
     });
 
     afterAll(() => {
       module = null;
       fields = null;
-      userRepoToken = null;
+      userUnionPermissionRepoToken = null;
     });
 
     it('should have id', async () => {
