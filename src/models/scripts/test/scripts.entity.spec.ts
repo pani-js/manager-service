@@ -3,7 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { EntityTestModule } from '@helpers/test-utils/entity-test.module';
 import { Script } from '../script.entity';
 import { EntityFields } from '@our-types/tests';
-import { getEntityFields } from '@/common/helpers/test-utils/entity-fields';
+import { getEntityFields } from '@helpers//test-utils/entity-fields';
 
 describe('ScriptEntity', () => {
   describe('Fields', () => {
@@ -46,7 +46,7 @@ describe('ScriptEntity', () => {
     });
 
     it('should have createdAt', async () => {
-      expect(fields.createdAt).toBe(String);
+      expect(fields.createdAt).toBe(Date);
     });
   });
 });

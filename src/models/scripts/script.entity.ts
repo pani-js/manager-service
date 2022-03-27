@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { User } from '../users/user.entity';
-import { Workspace } from '../workspaces/workspace.entity';
 
 @Entity({
   name: 'scripts',
@@ -22,10 +21,7 @@ export class Script {
   isPublic: boolean;
 
   @Column()
-  createdAt: string;
-
-  @ManyToOne(() => Workspace, (workspace) => workspace.scripts)
-  workspace: Workspace;
+  createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.scripts)
   user: User;

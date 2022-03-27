@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   ManyToOne,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { WorkSpaceKey } from '../workspace-keys/workspace-key.entity';
 import { Script } from '../scripts/script.entity';
@@ -22,9 +24,10 @@ export class Workspace {
   @OneToMany(() => WorkSpaceKey, (workSpaceKey) => workSpaceKey.workspace)
   workSpaceKeys: WorkSpaceKey[];
 
-  @OneToMany(() => Script, (script) => script.workspace)
-  scripts: Script[];
-
   @ManyToOne(() => Union, (union) => union.workspaces)
   union: Union;
+
+  @ManyToMany(() => Script)
+  @JoinTable()
+  scripts: Script[];
 }
