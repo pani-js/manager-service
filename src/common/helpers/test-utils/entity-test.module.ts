@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Script } from '@models/scripts/script.entity';
 import { Language } from '@models/languages/language.entity';
-import { Permission } from '@models/permissions/permission.entity';
 import { RefreshToken } from '@models/refresh-tokens/refresh-token.entity';
 import { UnionType } from '@models/union-types/union-type.entity';
 import { UnionData } from '@models/unions-data/union-data.entity';
@@ -11,10 +10,9 @@ import { Union } from '@models/unions/union.entity';
 import { User } from '@models/users/user.entity';
 import { WorkSpaceKey } from '@models/workspace-keys/workspace-key.entity';
 import { Workspace } from '@models/workspaces/workspace.entity';
-import { UserUnionPermission } from '@/models/user_union_permissions/user_union_permissions.entity';
+import { UserUnionPermission } from '@models/user-union-permissions/user-union-permission.entity';
 
 const entities = [
-  Permission,
   User,
   UnionType,
   Union,

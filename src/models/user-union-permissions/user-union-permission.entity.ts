@@ -1,7 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from 'typeorm';
 import { User } from '../users/user.entity';
 import { Union } from '../unions/union.entity';
-import { Permission } from '../permissions/permission.entity';
+import { Permission } from '@enums/permission.enum';
+import { Role } from '@enums/role.enum';
+
 @Entity({
   name: 'user_union_permissions',
 })
@@ -15,6 +17,9 @@ export class UserUnionPermission {
   @ManyToOne(() => Union, (union) => union.userUnionPermissions)
   union: Union;
 
-  @ManyToOne(() => Permission, (permission) => permission.userUnionPermissions)
-  permission: Permission;
+  @Column('simple-array', { array: true, default: [] })
+  permission: Permission[];
+
+  @Column('simple-array', { array: true, default: [] })
+  roles: Role[];
 }
