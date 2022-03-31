@@ -56,5 +56,9 @@ describe('UserEntity', () => {
     it('should have avatar', async () => {
       expect(fields.avatar).toBe(String);
     });
+
+    it('should have verified', async () => {
+      expect(fields.verified).toBe(Boolean);
+    });
   });
 });
