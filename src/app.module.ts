@@ -10,7 +10,6 @@ import { Union } from '@models/unions/union.entity';
 import { Language } from '@models/languages/language.entity';
 import { Workspace } from '@models/workspaces/workspace.entity';
 import { UnionType } from '@models/union-types/union-type.entity';
-import { Permission } from '@models/permissions/permission.entity';
 import { RefreshToken } from '@models/refresh-tokens/refresh-token.entity';
 import { WorkSpaceKey } from '@models/workspace-keys/workspace-key.entity';
 import { UnionsDataService } from '@models/unions-data/unions-data.service';
@@ -20,7 +19,7 @@ import { ScriptsController } from '@models/scripts/scripts.controller';
 import { ScriptsService } from '@models/scripts/scripts.service';
 import { ScriptsModule } from '@models/scripts/scripts.module';
 import { Script } from '@models/scripts/script.entity';
-import { UserUnionPermission } from '@models/user_union_permissions/user_union_permissions.entity';
+import { UserUnionPermission } from '@models/user-union-permissions/user-union-permission.entity';
 
 @Module({
   imports: [
@@ -37,7 +36,6 @@ import { UserUnionPermission } from '@models/user_union_permissions/user_union_p
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       entities: [
-        Permission,
         User,
         UnionType,
         Union,

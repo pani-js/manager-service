@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { EntityTestModule } from '@helpers/test-utils/entity-test.module';
-import { UserUnionPermission } from '../user_union_permissions.entity';
+import { UserUnionPermission } from '../user-union-permission.entity';
 import { EntityFields } from '@our-types/tests';
 import { getEntityFields } from '@helpers/test-utils/entity-fields';
 
@@ -30,6 +30,14 @@ describe('UserUnionPermissionEntity', () => {
 
     it('should have id', async () => {
       expect(fields.id).toBe(Number);
+    });
+
+    it('should have permissions', async () => {
+      expect(fields.permission).toBe('simple-array');
+    });
+
+    it('should have roles', async () => {
+      expect(fields.roles).toBe('simple-array');
     });
   });
 });

@@ -21,7 +21,8 @@
       "@/*": ["src/*"],
       "@helpers/*": ["src/common/helpers/*"],
       "@models/*": ["src/models/*"],
-      "@our-types/*": ["src/common/types/*"]
+      "@our-types/*": ["src/common/types/*"],
+      "@enums/*": ["src/common/enums/*"],
     }
   }
 }
