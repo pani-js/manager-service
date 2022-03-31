@@ -31,6 +31,9 @@ export class User {
   @Column()
   avatar: string;
 
+  @Column()
+  verified: boolean;
+
   @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user)
   refreshTokens: RefreshToken[];
 
