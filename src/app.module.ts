@@ -21,6 +21,7 @@ import { ScriptsService } from '@models/scripts/scripts.service';
 import { ScriptsModule } from '@models/scripts/scripts.module';
 import { Script } from '@models/scripts/script.entity';
 import { UserUnionPermission } from '@models/user_union_permissions/user_union_permissions.entity';
+import { LanguageModule } from './models/languages/languages.module';
 
 @Module({
   imports: [
@@ -51,7 +52,7 @@ import { UserUnionPermission } from '@models/user_union_permissions/user_union_p
       ],
       synchronize: true,
     }),
-
+    LanguageModule,
     UsersModule,
     UnionsModule,
     UnionsDataModule,
