@@ -21,6 +21,7 @@ import { UserUnionPermission } from '@models/user_union_permissions/user_union_p
 import { LanguageModule } from './models/languages/languages.module';
 import { PermissionsModule } from './models/permissions/permissions.module';
 import { RefreshTokensModule } from './models/refresh-tokens/refresh-tokens.module';
+import { UnionTypesModule } from './models/union-types/union-types.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -57,6 +58,7 @@ import { RefreshTokensModule } from './models/refresh-tokens/refresh-tokens.modu
     ScriptsModule,
     PermissionsModule,
     RefreshTokensModule,
+    UnionTypesModule,
   ],
 
   controllers: [AppController],
