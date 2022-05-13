@@ -32,8 +32,8 @@ export class PermissionsController {
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() updateLanguageDto: CreatePermissionDto,
+    @Body() updatePermissionDto: CreatePermissionDto,
   ) {
-    return this.permissionService.updatePermission(id, updateLanguageDto);
+    return this.permissionService.updatePermission(id, updatePermissionDto);
   }
 }

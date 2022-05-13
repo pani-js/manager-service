@@ -12,21 +12,21 @@ export class PermissionsService {
   ) {}
 
   async createPermission(dto: CreatePermissionDto) {
-    const language = await this.permissionRepository.save(
+    const permission = await this.permissionRepository.save(
       this.permissionRepository.create(dto),
     );
-    return language;
+    return permission;
   }
 
   async getPermission(id) {
-    const oneLanguage = await this.permissionRepository.findOne({
+    const onePermission = await this.permissionRepository.findOne({
       id,
     });
-    return oneLanguage;
+    return onePermission;
   }
   async getAllPermission() {
-    const languages = await this.permissionRepository.find();
-    return languages;
+    const permissions = await this.permissionRepository.find();
+    return permissions;
   }
   async deletePermission(id) {
     const deletePermission = await this.permissionRepository
@@ -42,7 +42,7 @@ export class PermissionsService {
       .createQueryBuilder()
       .update(Permission)
       .set({
-        description: PermissionDto.locale,
+        description: PermissionDto.description,
         name: PermissionDto.name,
       })
       .where('id = :id', { id: id })

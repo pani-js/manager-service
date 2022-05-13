@@ -34,8 +34,11 @@ export class RefreshTokensController {
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() updateLanguageDto: CreateRefreshTokenDto,
+    @Body() updateRefreshTokenDto: CreateRefreshTokenDto,
   ) {
-    return this.refreshTokenService.updateRefreshToken(id, updateLanguageDto);
+    return this.refreshTokenService.updateRefreshToken(
+      id,
+      updateRefreshTokenDto,
+    );
   }
 }
