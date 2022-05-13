@@ -38,7 +38,7 @@ export class PermissionsService {
     return `deleted:${id}${deletePermission}`;
   }
   async updatePermission(id, PermissionDto) {
-    const updatedPermission = await this.permissionRepository
+    const selectPermission = await this.permissionRepository
       .createQueryBuilder()
       .update(Permission)
       .set({
@@ -47,6 +47,6 @@ export class PermissionsService {
       })
       .where('id = :id', { id: id })
       .execute();
-    return updatedPermission;
+    return selectPermission;
   }
 }

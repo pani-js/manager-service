@@ -23,7 +23,7 @@ import { Script } from '@models/scripts/script.entity';
 import { UserUnionPermission } from '@models/user_union_permissions/user_union_permissions.entity';
 import { LanguageModule } from './models/languages/languages.module';
 import { PermissionsModule } from './models/permissions/permissions.module';
-
+import { RefreshTokensModule } from './models/refresh-tokens/refresh-tokens.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -59,6 +59,7 @@ import { PermissionsModule } from './models/permissions/permissions.module';
     UnionsDataModule,
     ScriptsModule,
     PermissionsModule,
+    RefreshTokensModule,
   ],
 
   controllers: [AppController, ScriptsController],
