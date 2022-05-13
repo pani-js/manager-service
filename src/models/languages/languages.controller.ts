@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Param,
+  Put,
+} from '@nestjs/common';
 import { CreateLanguageDto } from './dto/language.dto';
 import { LanguageService } from './languages.service';
 
@@ -22,5 +30,12 @@ export class LanguageController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.languageService.deleteLanguage(id);
+  }
+  @Put(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateLanguageDto: CreateLanguageDto,
+  ) {
+    return this.languageService.updateLanguage(id, updateLanguageDto);
   }
 }

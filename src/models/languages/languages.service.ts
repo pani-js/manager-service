@@ -37,4 +37,16 @@ export class LanguageService {
       .execute();
     return `deleted:${id}${deleteLanguage}`;
   }
+  async updateLanguage(id, LanguageDto) {
+    const updatedLanguage = await this.languageRepository
+      .createQueryBuilder()
+      .update(Language)
+      .set({
+        locale: LanguageDto.locale,
+        name: LanguageDto.name,
+      })
+      .where('id = :id', { id: id })
+      .execute();
+    return updatedLanguage;
+  }
 }
