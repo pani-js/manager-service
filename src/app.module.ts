@@ -22,6 +22,7 @@ import { ScriptsModule } from '@models/scripts/scripts.module';
 import { Script } from '@models/scripts/script.entity';
 import { UserUnionPermission } from '@models/user_union_permissions/user_union_permissions.entity';
 import { LanguageModule } from './models/languages/languages.module';
+import { PermissionsModule } from './models/permissions/permissions.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { LanguageModule } from './models/languages/languages.module';
     UnionsModule,
     UnionsDataModule,
     ScriptsModule,
+    PermissionsModule,
   ],
 
   controllers: [AppController, ScriptsController],
