@@ -22,6 +22,7 @@ import { LanguageModule } from './models/languages/languages.module';
 import { PermissionsModule } from './models/permissions/permissions.module';
 import { RefreshTokensModule } from './models/refresh-tokens/refresh-tokens.module';
 import { UnionTypesModule } from './models/union-types/union-types.module';
+import { WorkspaceKeysModule } from './models/workspace-keys/workspace-keys.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -59,6 +60,7 @@ import { UnionTypesModule } from './models/union-types/union-types.module';
     PermissionsModule,
     RefreshTokensModule,
     UnionTypesModule,
+    WorkspaceKeysModule,
   ],
 
   controllers: [AppController],
