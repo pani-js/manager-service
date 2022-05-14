@@ -23,6 +23,7 @@ import { PermissionsModule } from './models/permissions/permissions.module';
 import { RefreshTokensModule } from './models/refresh-tokens/refresh-tokens.module';
 import { UnionTypesModule } from './models/union-types/union-types.module';
 import { WorkspaceKeysModule } from './models/workspace-keys/workspace-keys.module';
+import { WorkspacesModule } from './models/workspaces/workspaces.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -61,6 +62,7 @@ import { WorkspaceKeysModule } from './models/workspace-keys/workspace-keys.modu
     RefreshTokensModule,
     UnionTypesModule,
     WorkspaceKeysModule,
+    WorkspacesModule,
   ],
 
   controllers: [AppController],
