@@ -12,15 +12,18 @@ import { Workspace } from '@models/workspaces/workspace.entity';
 import { UnionType } from '@models/union-types/union-type.entity';
 import { RefreshToken } from '@models/refresh-tokens/refresh-token.entity';
 import { WorkSpaceKey } from '@models/workspace-keys/workspace-key.entity';
-import { UnionsDataService } from '@models/unions-data/unions-data.service';
 import { UnionsDataModule } from '@models/unions-data/unions-data.module';
 import { UnionData } from '@models/unions-data/union-data.entity';
-import { ScriptsController } from '@models/scripts/scripts.controller';
-import { ScriptsService } from '@models/scripts/scripts.service';
 import { ScriptsModule } from '@models/scripts/scripts.module';
 import { Script } from '@models/scripts/script.entity';
 import { UserUnionPermission } from '@models/user-union-permissions/user-union-permission.entity';
-
+import { LanguageModule } from './models/languages/languages.module';
+import { PermissionsModule } from './models/permissions/permissions.module';
+import { RefreshTokensModule } from './models/refresh-tokens/refresh-tokens.module';
+import { UnionTypesModule } from './models/union-types/union-types.module';
+import { WorkspaceKeysModule } from './models/workspace-keys/workspace-keys.module';
+import { WorkspacesModule } from './models/workspaces/workspaces.module';
+import { Permission } from './models/permissions/permissions.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -46,18 +49,24 @@ import { UserUnionPermission } from '@models/user-union-permissions/user-union-p
         UnionData,
         Script,
         UserUnionPermission,
+        Permission,
       ],
       synchronize: true,
     }),
-
+    LanguageModule,
     UsersModule,
     UnionsModule,
     UnionsDataModule,
     ScriptsModule,
+    PermissionsModule,
+    RefreshTokensModule,
+    UnionTypesModule,
+    WorkspaceKeysModule,
+    WorkspacesModule,
   ],
 
-  controllers: [AppController, ScriptsController],
+  controllers: [AppController],
 
-  providers: [AppService, UnionsDataService, ScriptsService],
+  providers: [AppService],
 })
 export class AppModule {}
