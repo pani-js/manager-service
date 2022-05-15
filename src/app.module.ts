@@ -23,6 +23,7 @@ import { RefreshTokensModule } from './models/refresh-tokens/refresh-tokens.modu
 import { UnionTypesModule } from './models/union-types/union-types.module';
 import { WorkspaceKeysModule } from './models/workspace-keys/workspace-keys.module';
 import { WorkspacesModule } from './models/workspaces/workspaces.module';
+import { Permission } from './models/permissions/permissions.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -48,6 +49,7 @@ import { WorkspacesModule } from './models/workspaces/workspaces.module';
         UnionData,
         Script,
         UserUnionPermission,
+        Permission,
       ],
       synchronize: true,
     }),
