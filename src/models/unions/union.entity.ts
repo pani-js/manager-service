@@ -11,7 +11,7 @@ import { UnionType } from '../union-types/union-type.entity';
 import { UnionData } from '../unions-data/union-data.entity';
 import { Workspace } from '../workspaces/workspace.entity';
 import { User } from '../users/user.entity';
-import { UserUnionPermission } from '../user_union_permissions/user_union_permissions.entity';
+import { UserUnionPermission } from '../user-union-permissions/user-union-permission.entity';
 
 @Entity({
   name: 'unions',

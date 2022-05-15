@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { RefreshToken } from '../refresh-tokens/refresh-token.entity';
 import { Script } from '../scripts/script.entity';
-import { UserUnionPermission } from '../user_union_permissions/user_union_permissions.entity';
+import { UserUnionPermission } from '../user-union-permissions/user-union-permission.entity';
 
 @Entity({
   name: 'users',
@@ -30,6 +30,9 @@ export class User {
 
   @Column({ default: '' })
   avatar: string;
+
+  @Column()
+  verified: boolean;
 
   @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user)
   refreshTokens: RefreshToken[];
