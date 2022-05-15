@@ -10,16 +10,16 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, default: '' })
   username: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, default: '' })
   firstName: string;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, default: '' })
   lastName: string;
 
-  @Column()
+  @Column({ default: '' })
   position: string;
 
   @Column()
@@ -28,7 +28,7 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ default: '' })
   avatar: string;
 
   @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user)
