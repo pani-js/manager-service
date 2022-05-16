@@ -16,7 +16,7 @@ export class UsersService {
     );
     return user;
   }
-  async findUserById(id): Promise<User> {
+  async findUserById(id): Promise<User | undefined> {
     const user = await this.userRepository.findOne({
       id,
     });
@@ -25,7 +25,7 @@ export class UsersService {
     }
     return user;
   }
-  async findUserByEmail(email) {
+  async findUserByEmail(email): Promise<User | undefined> {
     const user = await this.userRepository.findOne({
       email,
     });

@@ -11,10 +11,12 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, password: string): Promise<User> {
-    const user = await this.userService.findUserByEmail(email);
-    if (user && compareSync(password, user.password)) {
-      return user;
+  async validateUser(email: string, pass: string): Promise<User | undefined> {
+    const user: User = await this.userService.findUserByEmail(email);
+    if (user && compareSync(pass, user.password)) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { password, ...userInfo } = user;
+      return userInfo;
     }
     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
