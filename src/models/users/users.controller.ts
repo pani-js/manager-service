@@ -11,8 +11,13 @@ export class UsersController {
     return this.userService.createUser(userDto);
   }
 
-  @Get(':id')
-  findUserById(@Param('id') id: string) {
-    return this.userService.findUserById(id);
+  // @Get(':id')
+  // findUserById(@Param('id') id: string) {
+  //   return this.userService.findUserById(id);
+  // }
+
+  @Get(':email')
+  findUserByEmail(@Param('email') email: string) {
+    return this.userService.findUserByEmail(email);
   }
 }
