@@ -27,10 +27,10 @@ import { Permission } from './models/permissions/permissions.entity';
 import { AuthModule } from './models/auth/auth.module';
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: ['.env.development'],
-      isGlobal: true,
-    }),
+    // ConfigModule.forRoot({
+    //   envFilePath: ['.env.development'],
+    //   isGlobal: true,
+    // }),
 
     TypeOrmModule.forRoot({
       type: 'postgres',

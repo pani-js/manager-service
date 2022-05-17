@@ -9,10 +9,10 @@ export class RefreshToken {
   id: number;
 
   @Column()
-  maxMembers: number;
+  expireIn: Date;
 
   @Column()
-  name: string;
+  value: string;
 
   @ManyToOne(() => User, (user) => user.refreshTokens)
   user: User;

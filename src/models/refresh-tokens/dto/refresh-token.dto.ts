@@ -1,4 +1,4 @@
 export class CreateRefreshTokenDto {
-  readonly maxMembers: number;
-  readonly name: string;
+  readonly expireIn: Date;
+  readonly value: string;
 }

@@ -3,46 +3,53 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateRefreshTokenDto } from './dto/refresh-token.dto';
 import { RefreshToken } from './refresh-token.entity';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class RefreshTokensService {
   constructor(
     @InjectRepository(RefreshToken)
-    private RefreshTokenRepository: Repository<RefreshToken>,
+    private refreshTokenRepository: Repository<RefreshToken>,
   ) {}
   async createRefreshToken(dto: CreateRefreshTokenDto) {
-    const refreshToken = await this.RefreshTokenRepository.save(
-      this.RefreshTokenRepository.create(dto),
+    const refreshToken = await this.refreshTokenRepository.save(
+      this.refreshTokenRepository.create(dto),
     );
     return refreshToken;
   }
   async getAllRefreshToken() {
-    return this.RefreshTokenRepository.find();
+    return this.refreshTokenRepository.find();
   }
   async getRefreshToken(id) {
-    return this.RefreshTokenRepository.findOne({
+    return this.refreshTokenRepository.findOne({
       id,
     });
   }
   async deleteRefreshToken(id) {
-    const deleteRefreshToken =
-      await this.RefreshTokenRepository.createQueryBuilder()
-        .delete()
-        .from(RefreshToken)
-        .where('id = :id', { id: id })
-        .execute();
+    const deleteRefreshToken = await this.refreshTokenRepository
+      .createQueryBuilder()
+      .delete()
+      .from(RefreshToken)
+      .where('id = :id', { id: id })
+      .execute();
     return `deleted:${id}${deleteRefreshToken}`;
   }
   async updateRefreshToken(id, RefreshTokenDto) {
-    const selectRefreshToken =
-      await this.RefreshTokenRepository.createQueryBuilder()
-        .update(RefreshToken)
-        .set({
-          maxMembers: RefreshTokenDto.maxMembers,
-          name: RefreshTokenDto.name,
-        })
-        .where('id = :id', { id: id })
-        .execute();
+    const selectRefreshToken = await this.refreshTokenRepository
+      .createQueryBuilder()
+      .update(RefreshToken)
+      .set({
+        expireIn: RefreshTokenDto.expireIn,
+        value: RefreshTokenDto.value,
+      })
+      .where('id = :id', { id: id })
+      .execute();
     return selectRefreshToken;
+  }
+  async setCurrentRefreshToken(refreshToken: string, id: number) {
+    const currentHashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+    await this.refreshTokenRepository
+      .createQueryBuilder()
+      .update(RefreshToken)
+      .set({ value: currentHashedRefreshToken, user: { id: id } });
   }
 }

@@ -21,8 +21,31 @@ export class AuthService {
     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
 
+  async getCookieWithJwtAccessToken(id: number) {
+    const payload = { id };
+    const token = this.jwtService.sign(payload, {
+      secret: `${process.env.JWT_ACCESS_SECRET}`,
+      expiresIn: `${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}h`,
+    });
+    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}h`;
+  }
+
+  public getCookieWithJwtRefreshToken(id: number) {
+    const payload = { id };
+    const token = this.jwtService.sign(payload, {
+      secret: `${process.env.JWT_REFRESH_TOKEN_SECRET}`,
+      expiresIn: `${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}h`,
+    });
+    const cookie = `Refresh=${token}; HttpOnly; Path=/; Max-Age=${process.env.JWT_REFRESH_TOKEN_EXPIRATION_TIME}h`;
+    return {
+      cookie,
+      token,
+    };
+  }
+
   async login(user) {
     const payload = {
+      id: user.id,
       username: user.username,
       firstName: user.firstName,
       email: user.email,
