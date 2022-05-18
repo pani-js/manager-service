@@ -10,12 +10,14 @@ export class UsersService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
   ) {}
+
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.save(
       this.userRepository.create(dto),
     );
     return user;
   }
+
   async findUserById(id): Promise<User | undefined> {
     const user = await this.userRepository.findOne({
       id,
@@ -25,6 +27,7 @@ export class UsersService {
     }
     return user;
   }
+
   async findUserByEmail(email): Promise<User | undefined> {
     const user = await this.userRepository.findOne({
       email,
@@ -33,5 +36,30 @@ export class UsersService {
       throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
     return user;
+  }
+
+  async findUserByUsername(username): Promise<User | undefined> {
+    const user = await this.userRepository.findOne({
+      username,
+    });
+    if (!user) {
+      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+    }
+    return user;
+  }
+
+  async findUserForRegistration(user) {
+    const { email, username } = user;
+    const userEmail = await this.userRepository.findOne({
+      email,
+    });
+    const userUsername = await this.userRepository.findOne({
+      username,
+    });
+    if (userEmail || userUsername) {
+      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+    }
+    const uniqueUser = await this.createUser(user);
+    return uniqueUser;
   }
 }

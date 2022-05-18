@@ -1,7 +1,13 @@
-import { Controller, Post, Request, UseGuards, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Request,
+  UseGuards,
+  Get,
+  ForbiddenException,
+} from '@nestjs/common';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { AuthService } from './auth.service';
-import { AuthGuard } from '@nestjs/passport';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
 @Controller('auth')
 export class AuthController {
@@ -10,17 +16,6 @@ export class AuthController {
     private authService: AuthService,
   ) {}
 
-  // @UseGuards(LocalAuthGuard)
-  // @Post('login')
-  // async login(@Request() req) {
-  //   return this.authService.login(req.user);
-  // }
-
-  // @UseGuards(AuthGuard('jwt'))
-  // @Get('user')
-  // async getUser(@Request() req) {
-  //   return this.authService.validateUser(req.user.email, req.user.password);
-  // }
   @UseGuards(LocalAuthGuard)
   @Post('log-in')
   async logIn(@Request() request) {
@@ -31,13 +26,33 @@ export class AuthController {
     const refreshTokenCookie = this.authService.getCookieWithJwtRefreshToken(
       user.id,
     );
-    const { token, cookie } = refreshTokenCookie;
-    await this.refreshService.setCurrentRefreshToken(token, user.id);
 
-    request.res.setHeader('Set-Cookie', [
-      accessTokenCookie,
+    await this.refreshService.setCurrentRefreshToken(
       refreshTokenCookie,
-    ]);
+      user.id,
+    );
+    await request.res.setHeader('Set-RefCookie', refreshTokenCookie);
+    await request.res.setHeader('Set-AuthCookie', accessTokenCookie);
     return user;
+  }
+
+  @Post('signUp')
+  async signUp(@Request() request) {
+    const { body, res } = request;
+    const addedUser = await this.authService.signUp(body);
+    if (!addedUser) {
+      throw new ForbiddenException('Your email or username Already in Use');
+    }
+    const accessTokenCookie =
+      await this.authService.getCookieWithJwtAccessToken(addedUser.id);
+    const refreshTokenCookie =
+      await this.authService.getCookieWithJwtRefreshToken(addedUser.id);
+    // await this.refreshService.setCurrentRefreshToken(
+    //   refreshTokenCookie,
+    //   body.id,
+    // );
+    await res.setHeader('Set-RefCookie', refreshTokenCookie);
+    await res.setHeader('Set-AuthCookie', accessTokenCookie);
+    return addedUser;
   }
 }

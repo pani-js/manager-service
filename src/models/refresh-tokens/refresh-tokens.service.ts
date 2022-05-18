@@ -10,20 +10,28 @@ export class RefreshTokensService {
     @InjectRepository(RefreshToken)
     private refreshTokenRepository: Repository<RefreshToken>,
   ) {}
+
+  public takeTokenFromString(token: string) {
+    return token.split(';')[0].split('=')[1];
+  }
+
   async createRefreshToken(dto: CreateRefreshTokenDto) {
     const refreshToken = await this.refreshTokenRepository.save(
       this.refreshTokenRepository.create(dto),
     );
     return refreshToken;
   }
+
   async getAllRefreshToken() {
     return this.refreshTokenRepository.find();
   }
+
   async getRefreshToken(id) {
     return this.refreshTokenRepository.findOne({
       id,
     });
   }
+
   async deleteRefreshToken(id) {
     const deleteRefreshToken = await this.refreshTokenRepository
       .createQueryBuilder()
@@ -33,6 +41,7 @@ export class RefreshTokensService {
       .execute();
     return `deleted:${id}${deleteRefreshToken}`;
   }
+
   async updateRefreshToken(id, RefreshTokenDto) {
     const selectRefreshToken = await this.refreshTokenRepository
       .createQueryBuilder()
@@ -45,11 +54,15 @@ export class RefreshTokensService {
       .execute();
     return selectRefreshToken;
   }
+
   async setCurrentRefreshToken(refreshToken: string, id: number) {
-    const currentHashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+    const token = this.takeTokenFromString(refreshToken);
+    const currentHashedRefreshToken = await bcrypt.hash(token, 10);
     await this.refreshTokenRepository
       .createQueryBuilder()
       .update(RefreshToken)
-      .set({ value: currentHashedRefreshToken, user: { id: id } });
+      .set({ value: currentHashedRefreshToken, user: { id: id } })
+      .where('id = :id', { id: 1 })
+      .execute();
   }
 }

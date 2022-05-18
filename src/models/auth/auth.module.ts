@@ -8,7 +8,6 @@ import { JwtStrategy } from './strategy/jwt.strategy';
 import { LocalStrategy } from './strategy/local.strategy';
 import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
 import { ConfigModule } from '@nestjs/config';
-
 @Module({
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy, LocalStrategy],
