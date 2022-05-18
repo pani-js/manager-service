@@ -14,10 +14,26 @@ export class RefreshTokensService {
   public takeTokenFromString(token: string) {
     return token.split(';')[0].split('=')[1];
   }
+  public takeExpireInFromString(token: string) {
+    const dateNow = new Date();
+    const tokenTime = token.split(';')[3].split('=')[1].slice(0, -1);
+    const time2 = new Date(+dateNow + +tokenTime * 6e4);
+    return time2;
+  }
 
-  async createRefreshToken(dto: CreateRefreshTokenDto) {
+  async createRefreshToken(fullToken, id) {
+    const headerToken = await this.takeTokenFromString(fullToken);
+    const expireIn = await this.takeExpireInFromString(fullToken);
+    const refreshObj = {
+      value: headerToken,
+      expireIn: expireIn,
+      user: {
+        id,
+      },
+    };
+    console.log(refreshObj);
     const refreshToken = await this.refreshTokenRepository.save(
-      this.refreshTokenRepository.create(dto),
+      this.refreshTokenRepository.create(refreshObj),
     );
     return refreshToken;
   }

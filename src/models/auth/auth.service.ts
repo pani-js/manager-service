@@ -1,9 +1,4 @@
-import {
-  ForbiddenException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 // import { compareSync } from 'bcrypt';
@@ -35,6 +30,7 @@ export class AuthService {
     const authCookie = `Authentication=${token}; HttpOnly; Path=/; Max-Age=${process.env.JWT_ACCESS_TOKEN_EXPIRATION_TIME}h`;
     return authCookie;
   }
+
   public getCookieWithJwtRefreshToken(id: number) {
     const payload = { id };
     const token = this.jwtService.sign(payload, {

@@ -3,7 +3,6 @@ import {
   Post,
   Request,
   UseGuards,
-  Get,
   ForbiddenException,
 } from '@nestjs/common';
 import { LocalAuthGuard } from './guard/local-auth.guard';
@@ -43,14 +42,18 @@ export class AuthController {
     if (!addedUser) {
       throw new ForbiddenException('Your email or username Already in Use');
     }
+
     const accessTokenCookie =
       await this.authService.getCookieWithJwtAccessToken(addedUser.id);
+
     const refreshTokenCookie =
       await this.authService.getCookieWithJwtRefreshToken(addedUser.id);
-    // await this.refreshService.setCurrentRefreshToken(
-    //   refreshTokenCookie,
-    //   body.id,
-    // );
+
+    await this.refreshService.createRefreshToken(
+      refreshTokenCookie,
+      addedUser.id,
+    );
+
     await res.setHeader('Set-RefCookie', refreshTokenCookie);
     await res.setHeader('Set-AuthCookie', accessTokenCookie);
     return addedUser;

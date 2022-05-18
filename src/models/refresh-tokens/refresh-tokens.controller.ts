@@ -14,11 +14,6 @@ import { RefreshTokensService } from './refresh-tokens.service';
 export class RefreshTokensController {
   constructor(private refreshTokenService: RefreshTokensService) {}
 
-  @Post()
-  create(@Body() languageDto: CreateRefreshTokenDto) {
-    return this.refreshTokenService.createRefreshToken(languageDto);
-  }
-
   @Get()
   getAll() {
     return this.refreshTokenService.getAllRefreshToken();
