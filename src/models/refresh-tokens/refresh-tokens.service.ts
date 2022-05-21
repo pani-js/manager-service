@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateRefreshTokenDto } from './dto/refresh-token.dto';
@@ -14,11 +14,12 @@ export class RefreshTokensService {
   public takeTokenFromString(token: string) {
     return token.split(';')[0].split('=')[1];
   }
+
   public takeExpireInFromString(token: string) {
     const dateNow = new Date();
     const tokenTime = token.split(';')[3].split('=')[1].slice(0, -1);
-    const time2 = new Date(+dateNow + +tokenTime * 6e4);
-    return time2;
+    const endtime = new Date(+dateNow + +tokenTime * 6e4);
+    return endtime;
   }
 
   async createRefreshToken(fullToken, id) {
@@ -42,10 +43,17 @@ export class RefreshTokensService {
     return this.refreshTokenRepository.find();
   }
 
-  async getRefreshToken(id) {
-    return this.refreshTokenRepository.findOne({
+  async getRefreshTokenById(id) {
+    const user = this.refreshTokenRepository.findOne({
       id,
     });
+    if (user) {
+      return user;
+    }
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 
   async deleteRefreshToken(id) {
@@ -80,5 +88,22 @@ export class RefreshTokensService {
       .set({ value: currentHashedRefreshToken, user: { id: id } })
       .where('id = :id', { id: 1 })
       .execute();
+  }
+
+  async getUserIfRefreshTokenMatches(refreshToken: string, userId: number) {
+    const user = await this.getRefreshTokenById(userId);
+
+    const isRefreshTokenMatching = await bcrypt.compare(
+      refreshToken,
+      user.value,
+    );
+
+    if (isRefreshTokenMatching) {
+      return user;
+    }
+    throw new HttpException(
+      'User with this id does not exist',
+      HttpStatus.NOT_FOUND,
+    );
   }
 }

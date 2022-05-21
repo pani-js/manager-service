@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Post,
-  Param,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common';
 import { CreateRefreshTokenDto } from './dto/refresh-token.dto';
 import { RefreshTokensService } from './refresh-tokens.service';
 
@@ -20,7 +12,7 @@ export class RefreshTokensController {
   }
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.refreshTokenService.getRefreshToken(id);
+    return this.refreshTokenService.getRefreshTokenById(id);
   }
   @Delete(':id')
   remove(@Param('id') id: string) {

@@ -4,10 +4,13 @@ import {
   Request,
   UseGuards,
   ForbiddenException,
+  Get,
+  Req,
 } from '@nestjs/common';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { AuthService } from './auth.service';
 import { RefreshTokensService } from '../refresh-tokens/refresh-tokens.service';
+import JwtRefreshGuard from './guard/jwtRefreshGuard';
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -57,5 +60,17 @@ export class AuthController {
     await res.setHeader('Set-RefCookie', refreshTokenCookie);
     await res.setHeader('Set-AuthCookie', accessTokenCookie);
     return addedUser;
+  }
+
+  @UseGuards(JwtRefreshGuard)
+  @Get('refresh')
+  refresh(@Req() request) {
+    console.log(request);
+    const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
+      request.user.id,
+    );
+
+    request.res.setHeader('Set-Cookie', accessTokenCookie);
+    return request.user;
   }
 }

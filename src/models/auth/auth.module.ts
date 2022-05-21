@@ -4,13 +4,13 @@ import { AuthService } from './auth.service';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
-import { JwtStrategy } from './strategy/jwt.strategy';
 import { LocalStrategy } from './strategy/local.strategy';
 import { RefreshTokensModule } from '../refresh-tokens/refresh-tokens.module';
 import { ConfigModule } from '@nestjs/config';
+import { JwtRefreshTokenStrategy } from './strategy/jwtRefreshToken.strategy';
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, LocalStrategy],
+  providers: [AuthService, LocalStrategy, JwtRefreshTokenStrategy],
   imports: [
     ConfigModule.forRoot({
       envFilePath: ['.env.development'],
