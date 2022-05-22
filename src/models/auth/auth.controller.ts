@@ -22,12 +22,10 @@ export class AuthController {
   @Post('log-in')
   async logIn(@Request() request) {
     const { user } = request;
-    const accessTokenCookie = this.authService.getCookieWithJwtAccessToken(
-      user.id,
-    );
-    const refreshTokenCookie = this.authService.getCookieWithJwtRefreshToken(
-      user.id,
-    );
+    const accessTokenCookie =
+      await this.authService.getCookieWithJwtAccessToken(user.id);
+    const refreshTokenCookie =
+      await this.authService.getCookieWithJwtRefreshToken(user.id);
 
     await this.refreshService.setCurrentRefreshToken(
       refreshTokenCookie,

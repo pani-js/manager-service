@@ -21,7 +21,7 @@ export class AuthService {
     throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
 
-  public getCookieWithJwtAccessToken(id: number) {
+  public async getCookieWithJwtAccessToken(id: number) {
     const payload = { id };
     const token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_ACCESS_SECRET}`,
@@ -31,7 +31,7 @@ export class AuthService {
     return authCookie;
   }
 
-  public getCookieWithJwtRefreshToken(id: number) {
+  public async getCookieWithJwtRefreshToken(id: number) {
     const payload = { id };
     const token = this.jwtService.sign(payload, {
       secret: `${process.env.JWT_REFRESH_TOKEN_SECRET}`,
